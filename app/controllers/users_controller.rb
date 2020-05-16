@@ -11,6 +11,9 @@ class UsersController < ApplicationController
     if @user.username.empty? || @user.password.empty?
       @error = "Username/ Password cannot be empty, Please try again!"
       erb :'users/signup'
+    elsif User.find_by(username: @user.username)
+        @error= "Username taken, please choose a different one!"
+        erb :'users/signup'
     else
       @user.save
       session[:user_id] = @user.id

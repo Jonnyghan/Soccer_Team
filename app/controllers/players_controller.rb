@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
 
   # GET: /players
   get "/players" do
-    binding.pry
+    #binding.pry
     @players = Player.all
     @club = Club.all
     erb :"/players/index.html"
