@@ -1,0 +1,16 @@
+<a href="/"> Home<a><br>
+<a href="/players/<%=@player.id%>/edit"> Edit Player<a><br>
+
+<h1>Name: <%=@player.name%></h1>
+<h3>Age:</h3> 
+<h4><%=@player.age%></h4>
+<h3>Position: </h3>
+<h4><%=@player.position%></h4><br><br>
+
+<form action="/players/<%=@player.id%>" method="post">
+<input type="hidden" name="_method" value="delete">
+<button type="submit">Delete Player</button>
+</form>
+
+
+

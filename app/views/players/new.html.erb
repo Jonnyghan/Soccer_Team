@@ -1,0 +1,16 @@
+<h1>Add a new Player</h1>
+ <p><%=@error%></p>
+<form action="/players" method="post">
+    <label> Name</label><br>
+    <input type="text" name="name"><br>
+    <label> Age</label><br>
+    <input type="integer" name="age"><br>
+    <label> Position</label> <br>
+    <input type="radio" name="position" value="Forward"> Forward
+    <input type="radio" name="position" value="Midfielder"> Midfielder
+    <input type="radio" name="position" value="Defender"> Defender
+    <input type="radio" name="position" value="Goalkeeper"> Goalie
+    <br>
+
+    <button type="submit"> Add Player</button>
+</form>
