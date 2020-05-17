@@ -1,37 +1,94 @@
+require 'pry'
 class ClubsController < ApplicationController
 
-  # GET: /clubs
+  # GET: /players
   get "/clubs" do
+    #binding.pry
+    @clubs = Club.all
     erb :"/clubs/index.html"
   end
 
-  # GET: /clubs/new
+  # GET: /players/new
   get "/clubs/new" do
-    erb :"/clubs/new.html"
+    @players=Player.select {|p| p["position"] != "GK"}
+    @fwd = Player.select {|p| p["position"] == "Fwd"}
+    @mid = Player.select {|p| p["position"] == "Mid"}
+    @def = Player.select {|p| p["position"] == "Def"}
+    @gk = Player.select {|p| p["position"] == "GK"}
+    
+    #binding.pry
+    erb :"clubs/new.html"
   end
 
-  # POST: /clubs
+  # POST: /players
   post "/clubs" do
-    redirect "/clubs"
+    params["club"][:user_id] = session[:user_id]
+    club = Club.create(params["club"])
+    if !club.name.nil? && !club.fwd_id.nil? && !club.mid_id.nil? && !club.def_id.nil? && !club.gk_id.nil? && !club.any_id.nil?
+      club.save
+      redirect "/clubs/#{club.id}"  
+    else
+      club.destroy
+      @error= "Whoops, looks like you're missing something. Please try again!"
+    #binding.pry
+      redirect "/clubs/new"
+    end
   end
 
-  # GET: /clubs/5
+  # GET: /players/5
   get "/clubs/:id" do
+    
+    @club = Club.find_by_id(params[:id])
+    @any = Player.find_by_id(@club.any_id)
+    @fwd = Player.find_by_id(@club.fwd_id)
+    #binding.pry 
+    @mid = Player.find_by_id(@club.mid_id)
+    @def = Player.find_by_id(@club.def_id)
+    @gk = Player.find_by_id(@club.gk_id)
+    @user = User.find_by_id(@club.user_id)
     erb :"/clubs/show.html"
   end
 
-  # GET: /clubs/5/edit
+  # GET: /players/5/edit
   get "/clubs/:id/edit" do
+    @club = Club.find(params["id"])
+    @any = Player.find_by_id(@club.any_id)
+    #binding.pry
+   @fwd = Player.find_by_id(@club.fwd_id)
+   @mid = Player.find_by_id(@club.mid_id)
+   @def = Player.find_by_id(@club.def_id)
+   @gk = Player.find_by_id(@club.gk_id)
+   @user = User.find_by_id(@club.user_id)
+   @players=Player.select {|p| p["position"] != "GK"}
+    @forward = Player.select {|p| p["position"] == "Fwd"}
+    @midfield = Player.select {|p| p["position"] == "Mid"}
+    @defender = Player.select {|p| p["position"] == "Def"}
+    @goalie = Player.select {|p| p["position"] == "GK"}
     erb :"/clubs/edit.html"
   end
 
-  # PATCH: /clubs/5
+  # PATCH: /players/5
   patch "/clubs/:id" do
-    redirect "/clubs/:id"
+   #binding.pry 
+   @club = Club.find(params["id"])
+    
+
+   
+    if !@club.name.nil? && !@club.fwd_id.nil? && !@club.mid_id.nil? && !@club.def_id.nil? && !@club.gk_id.nil? && !@club.any_id.nil?
+      @club.update(params["club"])
+      redirect "/clubs/#{@club.id}"  
+    else
+      @club.destroy
+      @error= "Whoops, looks like you're missing something. Please try again!"
+    #binding.pry
+      erb :"clubs/edit.html"
+   end
   end
 
-  # DELETE: /clubs/5/delete
-  delete "/clubs/:id/delete" do
-    redirect "/clubs"
+  # DELETE: /players/5/delete
+  delete "/clubs/:id" do
+      club = Club.find(params[:id])
+      club.destroy
+    redirect "/"
   end
 end

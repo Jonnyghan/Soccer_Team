@@ -1,1 +1,50 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1><%= @club.name %></h1>
+<p>Created by: <%= @user.username %></p>
+
+<h2>Forward(s)</h2>
+<h3>Name: </h3>
+<h4><%= @fwd.name %></h4>
+<h3>Age:</h3> 
+<h4><%= @fwd.age %></h4><br>
+
+<% if @any.position =="Fwd" then %>
+<h3><%= "Name:" %></h3>
+<h4><%= @any.name %> </h4>
+<h3><%="Age:"%></h3>
+<h4><%= "#{@any.age}"%></h4>
+<% end %>
+
+<h2>Midfielder(s)</h2>
+<h3>Name: </h3>
+<h4><%= @mid.name %></h4>
+<h3>Age:</h3> 
+<h4><%= @mid.age %></h4><br>
+<% if @any.position =="Mid" then %>
+<h3><%= "Name:" %></h3>
+<h4><%= @any.name %> </h4>
+<h3><%="Age:"%></h3>
+<h4><%= "#{@any.age}"%></h4>
+<% end %>
+
+
+
+<h2>Defender(s)</h2>
+<h3>Name: </h3>
+<h4><%= @def.name %></h4>
+<h3>Age:</h3> 
+<h4><%= @def.age %></h4><br>
+
+<% if @any.position =="Def" then %>
+<h3><%= "Name:" %></h3>
+<h4><%= @any.name %> </h4>
+<h3><%="Age:"%></h3>
+<h4><%= "#{@any.age}"%></h4>
+<% end %>
+
+
+<h2>Goalie</h2>
+<h3>Name: </h3>
+<h4><%= @gk.name %></h4>
+<h3>Age:</h3> 
+<h4><%=@gk.age%></h4>
+<h3>Position: </h3>

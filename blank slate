@@ -1,0 +1,31 @@
+<h1><%=@club.name%></h1>
+
+<h1>Name: <%=@fwd.name%></h1>
+<h3>Age:</h3> 
+<h4><%=@fwd.age%></h4>
+<h3>Position: </h3>
+<h4><%=@fwd.position%></h4><br><br>
+
+<h1>Name: <%=@mid.name%></h1>
+<h3>Age:</h3> 
+<h4><%=@mid.age%></h4>
+<h3>Position: </h3>
+<h4><%=@mid.position%></h4><br><br>
+
+<h1>Name: <%=@def.name%></h1>
+<h3>Age:</h3> 
+<h4><%=@def.age%></h4>
+<h3>Position: </h3>
+<h4><%=@def.position%></h4><br><br>
+
+<h1>Name: <%=@any.name%></h1>
+<h3>Age:</h3> 
+<h4><%=@any.age%></h4>
+<h3>Position: </h3>
+<h4><%=@any.position%></h4><br><br>
+
+<h1>Name: <%=@gk.name%></h1>
+<h3>Age:</h3> 
+<h4><%=@gk.age%></h4>
+<h3>Position: </h3>
+<h4><%=@gk.position%></h4><br><br>

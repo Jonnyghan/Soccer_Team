@@ -1,1 +1,38 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Add a new team</h1>
+ <p><%= @error %></p>
+<form action="/clubs" method="post">
+    <label> Team Name</label><br>
+        <input type="text" name="club[name]"><br>
+    <label> Forwards</label> <br>
+         <% @fwd.each do |f|%>
+             <input type="radio" name="club[fwd_id]" value="<%= f.id %>"  id="<%= f.id %>"> <%=f.name%> <br>
+         <%end%>
+    <br>
+    
+    <label> Midfielders</label><br>
+        <% @mid.each do |m|%>
+            <input type="radio" name="club[mid_id]" value="<%= m.id %>" id="<%= m.id %>"> <%=m.name%> <br>
+        <%end%>
+    <br>
+
+    <label>Defenders</label><br>
+        <% @def.each do |d|%>
+            <input type="radio" name="club[def_id]" value="<%= d.id %>" id="<%= d.id %>"> <%=d.name%> <br>
+        <%end%>
+    <br>
+    <label>Goalies</label><br>
+        <% @gk.each do |g|%>
+            <input type="radio" name="club[gk_id]" value="<%= g.id %>" id="<%= g.id %>"> <%=g.name%> <br>
+        <%end%>
+    <br>
+
+    <label>Fifth Player</label><br><br>
+    <p>Please Select A Player You Haven't Already Selected!</p>
+    <p>Remember to be creative and think about how you'd like your team to line up</p>
+        <% @players.each do |p|%>
+            <input type="radio" name="club[any_id]" value="<%= p.id%>" id="<%= p.id %>"> <%=p.name%> <br>
+        <%end%>
+    <br> 
+
+    <button type="submit"> Create Team</button>
+</form>

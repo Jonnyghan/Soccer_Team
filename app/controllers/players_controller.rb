@@ -19,12 +19,13 @@ class PlayersController < ApplicationController
   
     player = Player.create(params)
 
-    if player.name && player.age && player.position != nil
+    if !player.name.nil?  && !player.age.nil?  && !player.position.nil?
       player.save
       redirect "players/#{player.id}"
     else
-      @error= "Please try again"
-    redirect "/players"
+      player.destroy
+     @error = "Please try again!"
+    erb  :"/players/new.html"
     end
   end
 
