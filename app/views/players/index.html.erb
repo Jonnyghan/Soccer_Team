@@ -1,14 +1,18 @@
 <h1> Players!</h1>
+<%if session[:user_id] == 1 %>
+<a href="/players/new"> Create A New Player</a>  <br><br>
+<%end%>
 
 
 <% @players.each do |player|%>
 
-    <h2>•<a href='/players/<%=player.id%>'> <%= player.name %> </a></h2>
+    <h2>• <%= player.name %> </h2>
     <h4>Age: <%=player.age%></h4><br>
-    <h4>Position: <%=player.position%></h4><br><br>
+    <h4>Position: <%=player.position%></h4><br>
+    
+    <% if session[:user_id] == 1%>
+    <a href="/players/<%=player.id%>/edit">Edit Player</a><br><br>
+    <%end%>
 <%end%>
 
-<%if session[:user_id] == 13 %>
-<a href="/players/new"> Create A New Player</a>  
-<%end%>
 

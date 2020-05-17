@@ -28,5 +28,6 @@ class ApplicationController < Sinatra::Base
     redirect '/clubs'
    end
   end
+  
 
 end
