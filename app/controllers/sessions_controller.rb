@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         else 
             if user =User.find_by(username: params["username"], password: params["password"])
                 session[:user_id] = user.id
-                redirect "/players"
+                redirect "/clubs"
             else
                 @error = "Account not found"
                 erb :'users/login'
@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
 
     get '/logout' do
         session.clear
+        @goodbye = "You are now logged out. Goodbye!"
         redirect '/'
     end
 

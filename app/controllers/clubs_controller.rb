@@ -1,23 +1,30 @@
 require 'pry'
 class ClubsController < ApplicationController
-
+  
   # GET: /players
   get "/clubs" do
     #binding.pry
+    if logged_in?
     @clubs = Club.all
     erb :"/clubs/index.html"
+    else
+      redirect '/login'
+    end
   end
 
   # GET: /players/new
   get "/clubs/new" do
-    @players=Player.select {|p| p["position"] != "GK"}
-    @fwd = Player.select {|p| p["position"] == "Fwd"}
-    @mid = Player.select {|p| p["position"] == "Mid"}
-    @def = Player.select {|p| p["position"] == "Def"}
-    @gk = Player.select {|p| p["position"] == "GK"}
-    
+    if logged_in?
+      @players=Player.select {|p| p["position"] != "GK"}
+      @fwd = Player.select {|p| p["position"] == "Fwd"}
+      @mid = Player.select {|p| p["position"] == "Mid"}
+      @def = Player.select {|p| p["position"] == "Def"}
+      @gk = Player.select {|p| p["position"] == "GK"}
+      erb :"clubs/new.html"
+    else 
+      redirect '/login'
     #binding.pry
-    erb :"clubs/new.html"
+    end
   end
 
   # POST: /players
@@ -74,11 +81,11 @@ class ClubsController < ApplicationController
     
 
    
-    if !@club.name.nil? && !@club.fwd_id.nil? && !@club.mid_id.nil? && !@club.def_id.nil? && !@club.gk_id.nil? && !@club.any_id.nil?
+    if !@club.name.empty? && !@club.fwd_id.nil? && !@club.mid_id.nil? && !@club.def_id.nil? && !@club.gk_id.nil? && !@club.any_id.nil?
       @club.update(params["club"])
       redirect "/clubs/#{@club.id}"  
     else
-      @club.destroy
+      
       @error= "Whoops, looks like you're missing something. Please try again!"
     #binding.pry
       erb :"clubs/edit.html"

@@ -47,4 +47,8 @@
 <h4><%= @gk.name %></h4>
 <h3>Age:</h3> 
 <h4><%=@gk.age%></h4>
-<h3>Position: </h3>
+
+
+<%if session[:user_id] ==@club.user_id%>
+<a href="/clubs/<%=@club.id%>/edit">Edit Team</a>
+<%end%>

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
       @user.save
       session[:user_id] = @user.id
       #binding.pry
-      redirect "/players"
+      redirect "/clubs"
     end
   end
 

@@ -1,4 +1,5 @@
 <h1>Select A Team To View Their Lineup</h1>
+<a href='/clubs/new'>Create a new team</a>
 <% @clubs.each do |c|%>
     <h2> <a href="/clubs/<%= c.id %>"><%= c.name %></a></h2>
     
