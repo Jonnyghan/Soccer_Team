@@ -1,10 +1,15 @@
-<h1>Edit your club</h1>
+
 <p><%=@error%></p>
 
-<h1><%= @club.name %></h1>
-<p>Created by: <%= @user.username %></p>
+<form action="/clubs/<%= @club.id %>" method="post">
+    <input type="hidden" name= "_method" value="patch">
+    
+    <h1>Edit Lineup For: <%= @club.name %>  </h1>
+    <p>Created by: <%= @user.username %></p>
+    <label> Club Name</label><br>
+    <input type="text" name="club[name]"><br>
+<h2><label> Forwards</label></h2> <br>
 
-<h2>Forward(s)</h2>
 <h3>Name: </h3>
 <h4><%= @fwd.name %></h4>
 <h3>Age:</h3> 
@@ -16,6 +21,11 @@
 <h3><%="Age:"%></h3>
 <h4><%= "#{@any.age}"%></h4>
 <% end %>
+
+     <% @forward.each do |f|%>
+         <input type="radio" name="club[fwd_id]" value="<%= f.id %>"  id="<%= f.id %>"> <%=f.name%> <br>
+     <%end%>
+<br>
 
 <h2>Midfielder(s)</h2>
 <h3>Name: </h3>
@@ -30,6 +40,11 @@
 <% end %>
 
 
+<h2><label> Midfielders</label></h2><br>
+    <% @midfield.each do |m|%>
+        <input type="radio" name="club[mid_id]" value="<%= m.id %>" id="<%= m.id %>"> <%=m.name%> <br>
+    <%end%>
+<br>
 
 <h2>Defender(s)</h2>
 <h3>Name: </h3>
@@ -44,43 +59,25 @@
 <h4><%= "#{@any.age}"%></h4>
 <% end %>
 
+<h2><label>Defenders</label></h2><br>
+    <% @defender.each do |d|%>
+        <input type="radio" name="club[def_id]" value="<%= d.id %>" id="<%= d.id %>"> <%=d.name%> <br>
+    <%end%>
+<br>
 
 <h2>Goalie</h2>
 <h3>Name: </h3>
 <h4><%= @gk.name %></h4>
 <h3>Age:</h3> 
-<h4><%=@gk.age%></h4>
-<h3>Position: </h3>
+<h4><%=@gk.age%></h4><br>
 
-<form action="/clubs/<%= @club.id %>" method="post">
-    <input type="hidden" name= "_method" value="patch">
-
-    <label> Team Name</label><br>
-    <input type="text" name="club[name]"><br>
-<label> Forwards</label> <br>
-     <% @forward.each do |f|%>
-         <input type="radio" name="club[fwd_id]" value="<%= f.id %>"  id="<%= f.id %>"> <%=f.name%> <br>
-     <%end%>
-<br>
-
-<label> Midfielders</label><br>
-    <% @midfield.each do |m|%>
-        <input type="radio" name="club[mid_id]" value="<%= m.id %>" id="<%= m.id %>"> <%=m.name%> <br>
-    <%end%>
-<br>
-
-<label>Defenders</label><br>
-    <% @defender.each do |d|%>
-        <input type="radio" name="club[def_id]" value="<%= d.id %>" id="<%= d.id %>"> <%=d.name%> <br>
-    <%end%>
-<br>
-<label>Goalies</label><br>
+<h2><label>Goalies</label></h2><br>
     <% @goalie.each do |g|%>
         <input type="radio" name="club[gk_id]" value="<%= g.id %>" id="<%= g.id %>"> <%=g.name%> <br>
     <%end%>
 <br>
 
-<label>Fifth Player</label><br><br>
+<h2><label>Fifth Player</label></h2><br><br>
 <p>Please Select A Player You Haven't Already Selected!</p>
 <p>Remember to be creative and think about how you'd like your team to line up</p>
     <% @players.each do |p|%>
@@ -88,7 +85,7 @@
     <%end%>
 <br> 
 
-<button type="submit"> Create Team</button>
+<button type="submit"> Submit Club</button>
 
     
 

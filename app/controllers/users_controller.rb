@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.save
       session[:user_id] = @user.id
-      #binding.pry
+      
       redirect "/clubs"
    else
     

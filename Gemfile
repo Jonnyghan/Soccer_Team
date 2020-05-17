@@ -12,8 +12,12 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 
+
 group :test do
   gem 'rspec'
   gem 'capybara'
   gem 'rack-test'
+  gem 'guard-livereload', require: false
+  gem 'rack-livereload'
+  gem 'guard'
 end

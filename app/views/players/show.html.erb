@@ -6,7 +6,7 @@
 <h3>Position: </h3>
 <h4><%=@player.position%></h4><br><br>
 
-<%if session[:user_id] == 13%>
+<%if owner?%>
 <a href="/players/<%=@player.id%>/edit"> Edit Player<a><br>
 
 <form action="/players/<%=@player.id%>" method="post">

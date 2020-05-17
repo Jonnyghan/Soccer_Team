@@ -50,5 +50,11 @@
 
 
 <%if session[:user_id] ==@club.user_id%>
-<a href="/clubs/<%=@club.id%>/edit">Edit Team</a>
+<a href="/clubs/<%=@club.id%>/edit">Edit Team</a><br>
+<form action="/clubs/<%=@club.id%>" method="post">
+<input type="hidden" name="_method" value="delete">
+<button type="submit">Delete Club</button>
+</form>
+
+
 <%end%>

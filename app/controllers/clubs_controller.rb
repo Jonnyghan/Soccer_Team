@@ -3,9 +3,9 @@ class ClubsController < ApplicationController
   
   # GET: /players
   get "/clubs" do
-    #binding.pry
+    
     if logged_in?
-    @clubs = Club.all
+    @clubs = Club.all.reverse
     erb :"/clubs/index.html"
     else
       redirect '/login'
@@ -33,7 +33,7 @@ class ClubsController < ApplicationController
     else
       club.destroy
       @error= "Whoops, looks like you're missing something. Please try again!"
-    #binding.pry
+    
       redirect "/clubs/new"
     end
   end
@@ -44,7 +44,7 @@ class ClubsController < ApplicationController
     @club = Club.find_by_id(params[:id])
     @any = Player.find_by_id(@club.any_id)
     @fwd = Player.find_by_id(@club.fwd_id)
-    #binding.pry 
+     
     @mid = Player.find_by_id(@club.mid_id)
     @def = Player.find_by_id(@club.def_id)
     @gk = Player.find_by_id(@club.gk_id)
@@ -56,7 +56,7 @@ class ClubsController < ApplicationController
   get "/clubs/:id/edit" do
     @club = Club.find(params["id"])
     @any = Player.find_by_id(@club.any_id)
-    #binding.pry
+    
    @fwd = Player.find_by_id(@club.fwd_id)
    @mid = Player.find_by_id(@club.mid_id)
    @def = Player.find_by_id(@club.def_id)
@@ -72,19 +72,19 @@ class ClubsController < ApplicationController
 
   # PATCH: /players/5
   patch "/clubs/:id" do
-   #binding.pry 
+    
    @club = Club.find(params["id"])
     
 
    
-    if @club.update(params["club"])
-      @club.update(params["club"])
+    if !params["club"]["name"].empty? && !params["club"]["fwd_id"].nil?&& !params["club"]["mid_id"].nil? && !params["club"]["def_id"].nil? && !params["club"]["gk_id"].nil? && !params["club"]["any_id"].nil?
+     @club.update(params["club"])
       redirect "/clubs/#{@club.id}"  
     else
       
       @error= "Whoops, looks like you're missing something. Please try again!"
-    #binding.pry
-      erb :"clubs/edit.html"
+    
+      redirect "clubs/#{@club.id}/edit"
    end
   end
 
@@ -92,6 +92,6 @@ class ClubsController < ApplicationController
   delete "/clubs/:id" do
       club = Club.find(params[:id])
       club.destroy
-    redirect "/"
+    redirect "/clubs"
   end
 end

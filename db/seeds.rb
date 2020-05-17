@@ -20,5 +20,8 @@ Player.create(name:"Goncalo Guedes", age: 23, position:"Mid")
 Player.create(name:"Alessandro Florenzi", age: 29, position:"Def")
 Player.create(name: "Jasper Cillessen", age: 31, position:"GK")
 
-
-
+Club.create(name:"Test 1",user_id: 1,fwd_id: 7,mid_id: 6,def_id: 3,gk_id: 5,any_id: 1)
+Club.create(name:"Test 2",user_id: 1,fwd_id: 2,mid_id: 11,def_id: 12,gk_id: 9,any_id: 4)
+Club.create(name:"Test 3",user_id: 1,fwd_id: 10,mid_id:19,def_id: 4,gk_id: 13,any_id: 20)
+Club.create(name:"Test 4",user_id: 1,fwd_id: 18,mid_id: 15,def_id: 16,gk_id: 17,any_id: 8)
+Club.create(name:"Test 5",user_id: 1,fwd_id: 14,mid_id: 1,def_id: 8,gk_id: 21,any_id: 7)

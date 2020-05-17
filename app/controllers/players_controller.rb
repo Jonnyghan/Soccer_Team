@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
 
   # GET: /players
   get "/players" do
-    #binding.pry
+    
     @players = Player.all
     @club = Club.all
     erb :"/players/index.html"
@@ -45,7 +45,7 @@ class PlayersController < ApplicationController
 
   # PATCH: /players/5
   patch "/players/:id" do
-   #binding.pry 
+    
    @player = Player.find(params[:id])
    if !params["player"]["name"].empty? && !params["player"]["age"].empty? && !params["player"]["position"].empty?
       @player.update(params["player"])

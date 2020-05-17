@@ -1,7 +1,7 @@
-<h1>Add a new team</h1>
+<h1>Create a New Club</h1>
  <p><%= @error %></p>
 <form action="/clubs" method="post">
-    <label> Team Name</label><br>
+    <label>Club Name</label><br>
         <input type="text" name="club[name]"><br>
     <label> Forwards</label> <br>
          <% @fwd.each do |f|%>
@@ -34,5 +34,5 @@
         <%end%>
     <br> 
 
-    <button type="submit"> Create Team</button>
+    <button type="submit"> Create Club</button>
 </form>
