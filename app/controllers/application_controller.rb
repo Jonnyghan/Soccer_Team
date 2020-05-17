@@ -16,4 +16,17 @@ class ApplicationController < Sinatra::Base
   def logged_in?
     !!User.find_by_id(session[:user_id])
   end
+
+  def require_login
+    unless logged_in?
+      redirect '/login'
+    end
+  end
+
+  def owner?
+   unless session[:user_id] ==1
+    redirect '/clubs'
+   end
+  end
+
 end

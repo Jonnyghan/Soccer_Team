@@ -14,25 +14,21 @@ class ClubsController < ApplicationController
 
   # GET: /players/new
   get "/clubs/new" do
-    if logged_in?
+    require_login
       @players=Player.select {|p| p["position"] != "GK"}
       @fwd = Player.select {|p| p["position"] == "Fwd"}
       @mid = Player.select {|p| p["position"] == "Mid"}
       @def = Player.select {|p| p["position"] == "Def"}
       @gk = Player.select {|p| p["position"] == "GK"}
       erb :"clubs/new.html"
-    else 
-      redirect '/login'
-    #binding.pry
-    end
+    
   end
 
   # POST: /players
   post "/clubs" do
     params["club"][:user_id] = session[:user_id]
     club = Club.create(params["club"])
-    if !club.name.nil? && !club.fwd_id.nil? && !club.mid_id.nil? && !club.def_id.nil? && !club.gk_id.nil? && !club.any_id.nil?
-      club.save
+    if club.save
       redirect "/clubs/#{club.id}"  
     else
       club.destroy
@@ -81,7 +77,7 @@ class ClubsController < ApplicationController
     
 
    
-    if !@club.name.empty? && !@club.fwd_id.nil? && !@club.mid_id.nil? && !@club.def_id.nil? && !@club.gk_id.nil? && !@club.any_id.nil?
+    if @club.update(params["club"])
       @club.update(params["club"])
       redirect "/clubs/#{@club.id}"  
     else

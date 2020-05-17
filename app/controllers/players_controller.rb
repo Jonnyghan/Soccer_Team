@@ -11,6 +11,7 @@ class PlayersController < ApplicationController
 
   # GET: /players/new
   get "/players/new" do
+    owner?
     erb :"/players/new.html"
   end
 
@@ -37,7 +38,7 @@ class PlayersController < ApplicationController
 
   # GET: /players/5/edit
   get "/players/:id/edit" do
-   # binding.pry
+   owner?
     @player = Player.find(params["id"])
     erb :"/players/edit.html"
   end
