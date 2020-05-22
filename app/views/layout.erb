@@ -16,15 +16,15 @@
   </head>
   <body>
   <div>
-    <div><a href="/">Home</a></div> 
+    <div class ="home"><a href="/">Home</a></div> 
     <%if logged_in? %>
-    <div><a href="/players">Players</a></div>
-    <div><a href="/clubs">Clubs</a></div>
-    <div> <a href ="/logout">Log Out</a></div>
+    <div class ="col"><a href="/players">Players</a></div> 
+    <div class= "col"><a href="/clubs">Clubs</a></div>
+    <div class= "col"> <a href ="/logout">Log Out</a></div>
     <%end%>
     <%if !logged_in?%>
-    <div> <a href ="/signup">Sign Up</a></div>
-    <div> <a href ="/login">Log In</a></div>
+    <div class ="col2"> <a href ="/signup">Sign Up</a></div> 
+    <div class ="col2"> <a href ="/login">Log In</a></div>
     <%end%>
   </div>
 
