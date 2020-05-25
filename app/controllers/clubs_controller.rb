@@ -1,6 +1,11 @@
 require 'pry'
 class ClubsController < ApplicationController
   
+
+  before do
+    require_login
+  end
+
  
     # @players = Player.all
     # @notgk=Player.select {|p| p["position"] != "GK"}.sort_by{|p| p.position}
@@ -17,7 +22,6 @@ class ClubsController < ApplicationController
     
   # GET: /players/new
   get "/clubs/new" do
-    @players = Player.all
     @notgk=Player.select {|p| p["position"] != "GK"}.sort_by{|p| p.position}
     @forward = Player.select {|p| p["position"] == "Fwd"}
     @midfield = Player.select {|p| p["position"] == "Mid"}
@@ -30,8 +34,9 @@ class ClubsController < ApplicationController
 
   # POST: /players
   post "/clubs" do
-    params["club"][:user_id] = session[:user_id]
-    club = Club.new(params["club"])
+   # params["club"][:user_id] = session[:user_id]
+   user = User.find_by_id(session[:user_id])
+    club = user.clubs.build(params["club"])
     club_players = params["players"].map{|a,b| b}.collect{|p| Player.find_by_id(p)}
     #binding.pry
     club.players << club_players 

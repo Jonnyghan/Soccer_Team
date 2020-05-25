@@ -7,7 +7,7 @@ end
 
 use Rack::MethodOverride
 run ApplicationController
-use ClubsController
-use PlayersController
 use UsersController
 use SessionsController
+use ClubsController
+use PlayersController
