@@ -2,36 +2,37 @@
 <h1>Create a New Club</h1>
  <p><%= @error %></p>
 <form action="/clubs" method="post">
-    <h2>Club Name</h2><br>
+
+    <h2>Club Name</h2>
         <input type="text" name="club[name]"><br>
-    <h2> Forwards</h2> <br>
-         <% @@forward.each do |f|%>
+    <h2> Forwards</h2> 
+         <% @forward.each do |f|%>
              <input type="radio" name="players[fwd]" value="<%= f.id %>"  id="<%= f.id %>"> <%=f.name%> <br>
          <%end%>
     <br>
     
-    <h2> Midfielders</h2><br>
-        <% @@midfield.each do |m|%>
+    <h2> Midfielders</h2>
+        <% @midfield.each do |m|%>
             <input type="radio" name="players[mid]" value="<%= m.id %>" id="<%= m.id %>"> <%=m.name%> <br>
         <%end%>
     <br>
 
-    <h2>Defenders</h2><br>
-        <% @@defender.each do |d|%>
+    <h2>Defenders</h2>
+        <% @defender.each do |d|%>
             <input type="radio" name="players[def]" value="<%= d.id %>" id="<%= d.id %>"> <%=d.name%> <br> 
         <%end%>
     <br>
-    <h2>Goalies</h2><br>
-        <% @@goalie.each do |g|%>
+    <h2>Goalies</h2>
+        <% @goalie.each do |g|%>
             <input type="radio" name="players[gk]" value="<%= g.id %>" id="<%= g.id %>"> <%=g.name%> <br>
         <%end%>
     <br>
 
-    <h2>Fifth Player</h2><br><br>
+    <h2>Fifth Player</h2>
     <p>Please Select A Player You Haven't Already Selected!</p>
-    <p>Remember to be creative and think about how you'd like your team to line up</p>
+    <p>Remember to be creative and think about how you'd like your team to line up!</p>
     
-        <% @@notgk.each do |p|%>
+        <% @notgk.each do |p|%>
             <input type="radio" name="players[any]" value="<%= p.id%>" id="<%= p.id %>"> <%=p.name%> -- <%=p.position%> <br>
         <%end%>
     <br> 

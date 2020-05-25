@@ -2,52 +2,41 @@
 <p>Created by: <%= @user.username %></p>
 
 <h2>Forward(s)</h2>
+<% @fwd.each do |f|%>
 <h3>Name: </h3>
-<h4><%= @fwd.name %></h4>
+<h4><%= f.name %></h4>
 <h3>Age:</h3> 
-<h4><%= @fwd.age %></h4><br>
+<h4><%= f.age %></h4><br>
+<%end%>
 
-<% if @any.position =="Fwd" then %>
-<h3><%= "Name:" %></h3>
-<h4><%= @any.name %> </h4>
-<h3><%="Age:"%></h3>
-<h4><%= "#{@any.age}"%></h4>
-<% end %>
+
 
 <h2>Midfielder(s)</h2>
+<% @mid.each do |m| %>
 <h3>Name: </h3>
-<h4><%= @mid.name %></h4>
+<h4><%= m.name %></h4>
 <h3>Age:</h3> 
-<h4><%= @mid.age %></h4><br>
-<% if @any.position =="Mid" then %>
-<h3><%= "Name:" %></h3>
-<h4><%= @any.name %> </h4>
-<h3><%="Age:"%></h3>
-<h4><%= "#{@any.age}"%></h4>
+<h4><%= m.age %></h4><br>
 <% end %>
 
 
 
 <h2>Defender(s)</h2>
+<% @def.each do |d|%>
 <h3>Name: </h3>
-<h4><%= @def.name %></h4>
+<h4><%= d.name %></h4>
 <h3>Age:</h3> 
-<h4><%= @def.age %></h4><br>
-
-<% if @any.position =="Def" then %>
-<h3><%= "Name:" %></h3>
-<h4><%= @any.name %> </h4>
-<h3><%="Age:"%></h3>
-<h4><%= "#{@any.age}"%></h4>
-<% end %>
+<h4><%= d.age %></h4><br>
+<%end%>
 
 
 <h2>Goalie</h2>
+<% @gk.each do |g|%>
 <h3>Name: </h3>
-<h4><%= @gk.name %></h4>
+<h4><%= g.name %></h4>
 <h3>Age:</h3> 
-<h4><%=@gk.age%></h4>
-
+<h4><%=g.age%></h4>
+<% end %>
 
 <%if session[:user_id] ==@club.user_id%>
 <a href="/clubs/<%=@club.id%>/edit">Edit Team</a><br>
